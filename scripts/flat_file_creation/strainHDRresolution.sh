@@ -34,7 +34,7 @@ fi
 # Filtering VCF to only biallelic sites
 if [[ ! -f $vcf ]]; then
     bcftools view -m2 -M2 -e 'CHROM="MtDNA"' -O z -o $vcf $vcf_unfilt
-    bcftools view -m2 -M2 -i 'CHROM="MtDNA"' -O z -o $output_dir/$(basename $vcf_unfilt .vcf.gz).onlyMt.HDR.vcf.gz $vcf_unfilt 
+    bcftools view -m2 -M2 -i 'CHROM="MtDNA"' -O z -o $output_dir/$(basename $vcf_unfilt .vcf.gz).onlyMt.vcf.gz $vcf_unfilt 
 fi
 
 # Create temporary directory
@@ -112,5 +112,17 @@ bcftools annotate \
     --output-type z \
     $vcf
 
-rm -r $temp_dir
+
+### QC to make sure it is running correctly ###
+# extract binary matrix for AB1 from $zippped_output
+awk '{print $3}' $output_file > $temp_dir/AB1_genoMatrix.txt
+
+# extract HDR annotation for AB1 (zeros and one)
+bcftools query -f '%CHROM\t[%SAMPLE=%HDR]\n' -s AB1 $final_vcf | awk -F'=' '{print $2}' > $temp_dir/AB1_VCF.txt
+
+if cmp -s $temp_dir/AB1_genoMatrix.txt $temp_dir/AB1_VCF.txt; then 
+    rm -r $temp_dir
+else   
+    echo "HDR resolution may not have worked - binary matrices are different"
+
 

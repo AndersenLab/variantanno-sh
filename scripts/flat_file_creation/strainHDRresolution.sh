@@ -13,18 +13,18 @@
 
 if [[ $1 == "c_elegans" ]]; then
     strain_hdr_bed="/vast/eande106/data/c_elegans/WI/divergent_regions/20231213/20231213_c_elegans_divergent_regions_strain.bed.gz"
-    vcf="/vast/eande106/projects/Lance/THESIS_WORK/variant_annotation/processed_data/flat_file_creation/c_elegans/WI.20231213.hard-filter.isotype.biallelic.NoMt.vcf.gz"
-    vcf_unfilt="/vast/eande106/data/c_elegans/WI/variation/20231213/vcf/WI.20231213.hard-filter.isotype.vcf.gz"
+    vcf="/vast/eande106/projects/Lance/THESIS_WORK/variant_annotation/processed_data/flat_file_creation/c_elegans/WI.20250331.hard-filter.isotype.biallelic.NoMt.vcf.gz"
+    vcf_unfilt="/vast/eande106/data/c_elegans/WI/variation/20250331/vcf/WI.20250331.hard-filter.isotype.vcf.gz"
     output_dir="/vast/eande106/projects/Lance/THESIS_WORK/variant_annotation/processed_data/flat_file_creation/c_elegans"
 elif [[ $1 == "c_tropicalis" ]]; then
     strain_hdr_bed="/vast/eande106/data/c_tropicalis/WI/divergent_regions/20231201/20231201_c_tropicalis_divergent_regions_strain.bed.gz"
-    vcf="/vast/eande106/projects/Lance/THESIS_WORK/variant_annotation/processed_data/flat_file_creation/c_tropicalis/WI.20231201.hard-filter.isotype.biallelic.NoMt.vcf.gz"
-    vcf_unfilt="/vast/eande106/data/c_tropicalis/WI/variation/20231201/vcf/WI.20231201.hard-filter.isotype.vcf.gz"
+    vcf="/vast/eande106/projects/Lance/THESIS_WORK/variant_annotation/processed_data/flat_file_creation/c_tropicalis/WI.20250331.hard-filter.isotype.biallelic.NoMt.vcf.gz"
+    vcf_unfilt="/vast/eande106/data/c_tropicalis/WI/variation/20250331/vcf/WI.20250331.hard-filter.isotype.vcf.gz"
     output_dir="/vast/eande106/projects/Lance/THESIS_WORK/variant_annotation/processed_data/flat_file_creation/c_tropicalis"
 elif [[ $1 == "c_briggsae" ]]; then
     strain_hdr_bed=""
-    vcf="/vast/eande106/projects/Lance/THESIS_WORK/variant_annotation/processed_data/flat_file_creation/c_briggsae/WI.20240129.hard-filter.isotype.biallelic.NoMt.vcf.gz"
-    vcf_unfilt="/vast/eande106/data/c_briggsae/WI/variation/20240129/vcf/WI.20240129.hard-filter.isotype.vcf.gz"
+    vcf="/vast/eande106/projects/Lance/THESIS_WORK/variant_annotation/processed_data/flat_file_creation/c_briggsae/WI.20250331.hard-filter.isotype.biallelic.NoMt.vcf.gz"
+    vcf_unfilt="/vast/eande106/data/c_elegans/WI/variation/20250331/vcf/WI.20250331.hard-filter.isotype.vcf.gz"
     output_dir="/vast/eande106/projects/Lance/THESIS_WORK/variant_annotation/processed_data/flat_file_creation/c_briggsae"
 else
     echo "Unsupported organism: $1"
@@ -33,8 +33,8 @@ fi
 
 # Filtering VCF to only biallelic sites
 if [[ ! -f $vcf ]]; then
-    bcftools view -m2 -M2 -e 'CHROM="MtDNA"' -O z -o $vcf $vcf_unfilt
-    bcftools view -m2 -M2 -i 'CHROM="MtDNA"' -O z -o $output_dir/$(basename $vcf_unfilt .vcf.gz).onlyMt.vcf.gz $vcf_unfilt 
+    bcftools view -m2 -M2 -v snps -e 'CHROM=="MtDNA"' -O z -o $vcf $vcf_unfilt
+    bcftools view -m2 -M2 -v snps  -i 'CHROM=="MtDNA"' -O z -o $output_dir/$(basename $vcf_unfilt .vcf.gz).onlyMt.vcf.gz $vcf_unfilt 
 fi
 
 # Create temporary directory
@@ -124,5 +124,6 @@ if cmp -s $temp_dir/AB1_genoMatrix.txt $temp_dir/AB1_VCF.txt; then
     rm -r $temp_dir
 else   
     echo "HDR resolution may not have worked - binary matrices are different"
+fi
 
 

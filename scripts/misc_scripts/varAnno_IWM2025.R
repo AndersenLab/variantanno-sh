@@ -8,9 +8,13 @@ library(stringr)
 library(forcats)
 library(tibble)
 
+
+# ================================================================================================================================================================================================================================================ #
+# Plotting normalized variant calls per chromosome for each species and proportion of predicted deleteriuos #
+# ================================================================================================================================================================================================================================================ #
 ################################################# BRIGGSAE #################################################################################################################################################################################################### 
 # VEP
-V = readr::read_csv("/vast/eande106/projects/Lance/THESIS_WORK/variant_annotation/processed_data/flat_file_creation/c_briggsae/HDRres_merging/finalMerge/VEP_c_briggsae_WBGeneID_GRANTHAM_BLOSUM_PP_final_nonINSERTIONPP.csv")
+V = readr::read_csv("/vast/eande106/projects/Lance/THESIS_WORK/variant_annotation/processed_data/flat_file_creation/c_briggsae/HDRres_merging/finalMerge/VEP_c_briggsae_WBGeneID_GRANTHAM_BLOSUM_PP_final.csv")
 # chrom,pos,ref,alt,consequence,impact,AA,strain,transcript_name,wbgene,gene_name,grantham_score,blosum_score,percent_protein
 
 VEP_cb <- V %>%  
@@ -28,7 +32,7 @@ print(nrow(VEP_cb)) # 131281
 sum(duplicated(paste(VEP_cb$chrom, VEP_cb$pos, VEP_cb$VEP_consequence, VEP_cb$transcript_name))) # 0
 
 # ANNOVAR
-A = readr::read_csv("/vast/eande106/projects/Lance/THESIS_WORK/variant_annotation/processed_data/flat_file_creation/c_briggsae/HDRres_merging/finalMerge/ANNOVAR_c_briggsae_WBGeneID_GRANTHAM_BLOSUM_PP_final_nonINSERTIONPP.csv") 
+A = readr::read_csv("/vast/eande106/projects/Lance/THESIS_WORK/variant_annotation/processed_data/flat_file_creation/c_briggsae/HDRres_merging/finalMerge/ANNOVAR_c_briggsae_WBGeneID_GRANTHAM_BLOSUM_PP_final.csv") 
 # chrom,pos,ref,alt,consequence,impact,AA,strain,transcript_name,wbgene,gene_name,grantham_score,blosum_score,percent_protein
 
 ANV_cb <- A %>%
@@ -46,7 +50,7 @@ sum(duplicated(paste(ANV_cb$chrom, ANV_cb$pos, ANV_cb$ANV_impact, ANV_cb$transcr
 
 
 # BCSQ
-C = readr::read_csv("/vast/eande106/projects/Lance/THESIS_WORK/variant_annotation/processed_data/flat_file_creation/c_briggsae/HDRres_merging/finalMerge/CSQ_c_briggsae_WBGeneID_GRANTHAM_BLOSUM_PP_final_nonINSERTIONPP.csv") 
+C = readr::read_csv("/vast/eande106/projects/Lance/THESIS_WORK/variant_annotation/processed_data/flat_file_creation/c_briggsae/HDRres_merging/finalMerge/CSQ_c_briggsae_WBGeneID_GRANTHAM_BLOSUM_PP_final.csv") 
 # chrom,pos,ref,alt,consequence,AA,DNAchange,strain,transcript_name,wbgene,gene_name,grantham_score,blosum_score,percent_protein
 
 CSQ_cb <- C %>% 
@@ -158,7 +162,7 @@ top_plot <- ggplot(cb_final, aes(x = chrom)) +
   theme(
     axis.title = element_blank(),
     axis.text.x = element_blank(),
-    plot.title = element_text(size = 18, face = "italic", hjust = 0.5),
+    plot.title = element_text(size = 18, face = "bold.italic", hjust = 0.5),
     axis.ticks.x = element_blank(),
     axis.text.y = element_text(size = 12, color = 'black'),
     legend.position = "none",
@@ -178,7 +182,7 @@ bottom_plot <- ggplot(cb_final, aes(x = chrom)) +
   theme_minimal() +
   theme(
     axis.title = element_blank(),
-    axis.text.x = element_text(size = 14, face = "bold"),
+    axis.text.x = element_text(size = 14, face = "bold", color = 'black'),
     legend.position = "none",
     axis.text.y = element_text(size = 12, color = 'black'),
     panel.background = element_blank(),
@@ -194,7 +198,7 @@ x
 
 ################################################# ELEGANS ####################################################################################################################################################################################################  
 # VEP
-V_e = readr::read_csv("/vast/eande106/projects/Lance/THESIS_WORK/variant_annotation/processed_data/flat_file_creation/c_elegans/HDRres_merging/finalMerge/VEP_c_elegans_WBGeneID_GRANTHAM_BLOSUM_PP_final_nonINSERTIONPP.csv")
+V_e = readr::read_csv("/vast/eande106/projects/Lance/THESIS_WORK/variant_annotation/processed_data/flat_file_creation/c_elegans/HDRres_merging/finalMerge/VEP_c_elegans_WBGeneID_GRANTHAM_BLOSUM_PP_final.csv")
 # chrom,pos,ref,alt,consequence,impact,AA,strain,divergent,transcript_name,wbgene,gene_name,grantham_score,blosum_score,percent_protein
 
 VEP_ce <- V_e %>%  
@@ -212,7 +216,7 @@ print(nrow(VEP_ce)) # 84524
 sum(duplicated(paste(VEP_ce$chrom, VEP_ce$pos, VEP_ce$VEP_consequence, VEP_ce$transcript_name))) # 0
 
 # ANNOVAR
-A_e = readr::read_csv("/vast/eande106/projects/Lance/THESIS_WORK/variant_annotation/processed_data/flat_file_creation/c_elegans/HDRres_merging/finalMerge/ANNOVAR_c_elegans_WBGeneID_GRANTHAM_BLOSUM_PP_final_nonINSERTIONPP.csv") 
+A_e = readr::read_csv("/vast/eande106/projects/Lance/THESIS_WORK/variant_annotation/processed_data/flat_file_creation/c_elegans/HDRres_merging/finalMerge/ANNOVAR_c_elegans_WBGeneID_GRANTHAM_BLOSUM_PP_final.csv") 
 # chrom,pos,ref,alt,consequence,impact,AA,strain,divergent,transcript_name,wbgene,gene_name,grantham_score,blosum_score,percent_protein
 
 ANV_ce <- A_e %>%
@@ -230,7 +234,7 @@ sum(duplicated(paste(ANV_ce$chrom, ANV_ce$pos, ANV_ce$ANV_impact, ANV_ce$transcr
 
 
 # BCSQ
-C_e = readr::read_csv("/vast/eande106/projects/Lance/THESIS_WORK/variant_annotation/processed_data/flat_file_creation/c_elegans/HDRres_merging/finalMerge/CSQ_c_elegans_WBGeneID_GRANTHAM_BLOSUM_PP_final_nonINSERTIONPP.csv") 
+C_e = readr::read_csv("/vast/eande106/projects/Lance/THESIS_WORK/variant_annotation/processed_data/flat_file_creation/c_elegans/HDRres_merging/finalMerge/CSQ_c_elegans_WBGeneID_GRANTHAM_BLOSUM_PP_final.csv") 
 # chrom,pos,ref,alt,consequence,AA,DNAchange,strain,divergent,transcript_name,wbgene,gene_name,grantham_score,blosum_score,percent_protein
 
 CSQ_ce <- C_e %>% 
@@ -336,7 +340,7 @@ top_plot <- ggplot(ce_final, aes(x = chrom)) +
     axis.text.x = element_blank(),
     axis.ticks.x = element_blank(),
     axis.text.y = element_text(size = 12, color = 'black'),
-    plot.title = element_text(size = 18, face = "italic", hjust = 0.5),
+    plot.title = element_text(size = 18, face = "bold.italic", hjust = 0.5),
     legend.position = "none",
     panel.background = element_blank(),
     panel.grid = element_blank()) 
@@ -354,7 +358,7 @@ bottom_plot <- ggplot(ce_final, aes(x = chrom)) +
   theme_minimal() +
   theme(
     axis.title = element_blank(),
-    axis.text.x = element_text(size = 14, face = "bold"),
+    axis.text.x = element_text(size = 14, face = "bold", color = 'black'),
     legend.position = "none",
     axis.text.y = element_text(size = 12, color = 'black'),
     panel.background = element_blank(),
@@ -372,7 +376,7 @@ y
 
 ################################################# TROPICALIS ################################################################################################################################################################################################## 
 # VEP
-V_t = readr::read_csv("/vast/eande106/projects/Lance/THESIS_WORK/variant_annotation/processed_data/flat_file_creation/c_tropicalis/HDRres_merging/finalMerge/VEP_c_tropicalis_WBGeneID_GRANTHAM_BLOSUM_PP_final_nonINSERTIONPP.csv")
+V_t = readr::read_csv("/vast/eande106/projects/Lance/THESIS_WORK/variant_annotation/processed_data/flat_file_creation/c_tropicalis/HDRres_merging/finalMerge/VEP_c_tropicalis_WBGeneID_GRANTHAM_BLOSUM_PP_final.csv")
 # chrom,pos,ref,alt,consequence,impact,AA,strain,divergent,transcript_name,wbgene,gene_name,grantham_score,blosum_score,percent_protein
 
 VEP_ct <- V_t %>%  
@@ -390,7 +394,7 @@ print(nrow(VEP_ct)) #
 sum(duplicated(paste(VEP_ct$chrom, VEP_ct$pos, VEP_ct$VEP_consequence, VEP_ct$transcript_name))) # 0
 
 # ANNOVAR
-A_t = readr::read_csv("/vast/eande106/projects/Lance/THESIS_WORK/variant_annotation/processed_data/flat_file_creation/c_tropicalis/HDRres_merging/finalMerge/ANNOVAR_c_tropicalis_WBGeneID_GRANTHAM_BLOSUM_PP_final_nonINSERTIONPP.csv") 
+A_t = readr::read_csv("/vast/eande106/projects/Lance/THESIS_WORK/variant_annotation/processed_data/flat_file_creation/c_tropicalis/HDRres_merging/finalMerge/ANNOVAR_c_tropicalis_WBGeneID_GRANTHAM_BLOSUM_PP_final.csv") 
 # chrom,pos,ref,alt,consequence,impact,AA,strain,divergent,transcript_name,wbgene,gene_name,grantham_score,blosum_score,percent_protein
 
 ANV_ct<- A_t %>%
@@ -408,7 +412,7 @@ sum(duplicated(paste(ANV_ct$chrom, ANV_ct$pos, ANV_ct$ANV_impact, ANV_ct$transcr
 
 
 # BCSQ
-C_t = readr::read_csv("/vast/eande106/projects/Lance/THESIS_WORK/variant_annotation/processed_data/flat_file_creation/c_tropicalis/HDRres_merging/finalMerge/CSQ_c_tropicalis_WBGeneID_GRANTHAM_BLOSUM_PP_final_nonINSERTIONPP.csv") 
+C_t = readr::read_csv("/vast/eande106/projects/Lance/THESIS_WORK/variant_annotation/processed_data/flat_file_creation/c_tropicalis/HDRres_merging/finalMerge/CSQ_c_tropicalis_WBGeneID_GRANTHAM_BLOSUM_PP_final.csv") 
 # chrom,pos,ref,alt,consequence,AA,DNAchange,strain,divergent,transcript_name,wbgene,gene_name,grantham_score,blosum_score,percent_protein
 
 CSQ_ct <- C_t %>% 
@@ -522,7 +526,7 @@ top_plot <- ggplot(ct_final, aes(x = chrom)) +
     axis.text.x = element_blank(),
     axis.ticks.x = element_blank(),
     axis.text.y = element_text(size = 12, color = 'black'),
-    plot.title = element_text(size = 18, face = "italic", hjust = 0.5),
+    plot.title = element_text(size = 18, face = "bold.italic", hjust = 0.5, color = 'black'),
     legend.position = "none",
     panel.background = element_blank(),
     panel.grid = element_blank()) 
@@ -541,7 +545,7 @@ bottom_plot <- ggplot(ct_final, aes(x = chrom)) +
   theme_minimal() +
   theme(
     axis.title = element_blank(),
-    axis.text.x = element_text(size = 14, face = "bold"),
+    axis.text.x = element_text(size = 14, face = "bold", color = 'black'),
     legend.position = "none",
     axis.text.y = element_text(size = 12, color = 'black'),
     panel.background = element_blank(),
@@ -591,9 +595,9 @@ final_plot
 
 
 
-
-
-####################### A heat map of the major types of variant annotations for each strain, faceted by species ########################################################################################################################
+# ================================================================================================================================================================================================================================================ #
+# HEAT MAP of the major types of variant annotations for each strain, faceted by species #
+# ================================================================================================================================================================================================================================================ #
 cb_heatmap <- C %>%
   dplyr::mutate(species = "CB") %>%
   dplyr::filter(consequence != "N/A") %>%
@@ -685,9 +689,11 @@ hm <- ggplot(csq_heatmap_class_2, aes(x = strain, y = classification, fill = nor
   geom_tile() +
   scale_fill_viridis_c(option = "C", name = "Normalized variant count") +
   facet_wrap(~ species, scales = "free_x") +
+  xlab('Wild Strains') +
   theme(
     axis.text.x = element_blank(),
-    axis.title = element_blank(),
+    axis.title.y = element_blank(),
+    axis.title.x = element_text(size = 14, face = 'bold', color = 'black'),
     strip.text = element_text(face = "bold", size = 16),
     panel.grid = element_blank(),
     axis.text.y = element_text(size = 14, face = 'bold', color = 'black'),
@@ -700,7 +706,7 @@ hm
 
 # ggsave("/vast/eande106/projects/Lance/THESIS_WORK/variant_annotation/plots/IWM_2025_poster/heatmap.png", hm, width = 14, height = 8, dpi = 600)
 
-# 5. Plot with your heatmap code:
+
 top10 <- ggplot(csq_top20, aes(x = strain_label, y = classification, fill = norm_consequence_count)) +
   geom_tile() +
   scale_fill_viridis_c(option = "C", name = "Normalized variant count") +
@@ -729,7 +735,11 @@ top10
 
 
 
-############### Distribution of where variants are called ####################################################################################################################################### 
+
+
+# ================================================================================================================================================================================================================================================ #
+# Distribution of where variants are called #
+# ================================================================================================================================================================================================================================================ #
 cb_freq <- readr::read_delim("/vast/eande106/projects/Lance/THESIS_WORK/variant_annotation/processed_data/flat_file_creation/c_briggsae/noMt.chrom.pos.tsv", delim = " ", trim_ws = TRUE, col_names = c("chrom","pos")) 
 
 cb_binned <- cb_freq %>%
@@ -845,8 +855,9 @@ final_plot_2
 
 
 
-
-############### Variant concordance bubble plot ####################################################################################################################################### 
+# ================================================================================================================================================================================================================================================ #
+# Variant concordance bubble plot #
+# ================================================================================================================================================================================================================================================ #
 ###### BRIGGSAE ###### 
 cVb <- V %>%
   dplyr::select(chrom, pos, consequence, transcript_name) %>%
@@ -932,7 +943,6 @@ cAe <- A_e %>%
   dplyr::filter(ANV_con != "N/A") %>%
   dplyr::select(-consequence)
 
-C_e = readr::read_tsv("/vast/eande106/projects/Lance/THESIS_WORK/variant_annotation/processed_data/flat_file_creation/c_elegans/HDRres_merging/finalMerge/CSQ_c_elegans_WBGeneID.tsv", col_names = c("chrom","pos","ref","alt","consequence","AA","DNAchange","strain","divergent","transcript_name","WBGene","locus")) 
 cCe <- C_e %>%
   dplyr::select(chrom, pos, consequence, transcript_name) %>%
   dplyr::filter(consequence != "N/A") %>%
@@ -1000,7 +1010,6 @@ cAt <- A_t %>%
   dplyr::filter(ANV_con != "N/A") %>%
   dplyr::select(-consequence)
 
-C_t = readr::read_tsv("/vast/eande106/projects/Lance/THESIS_WORK/variant_annotation/processed_data/flat_file_creation/c_tropicalis/HDRres_merging/finalMerge/CSQ_c_tropicalis_WBGeneID.tsv", col_names = c("chrom","pos","ref","alt","consequence","AA","DNAchange","strain","divergent","transcript_name","WBGene","locus")) 
 cCt <- C_t %>%
   dplyr::select(chrom, pos, consequence, transcript_name) %>%
   dplyr::filter(consequence != "N/A") %>%
@@ -1092,3 +1101,110 @@ conc_plot <- ggplot(all_sp_variant_count, aes(x = consequence, y = tool, size = 
 conc_plot
 
 # ggsave("/vast/eande106/projects/Lance/THESIS_WORK/variant_annotation/plots/IWM_2025_poster/concordance_annotations.png", conc_plot, width = 20, height = 10, dpi = 600)
+
+
+
+
+
+
+
+
+
+# ================================================================================================================================================================================================================================================ #
+# Proportion of variants called in HDRs for every strain in tropicalis and elegans  #
+# ================================================================================================================================================================================================================================================ #
+ct_hdr <- C_t %>%
+  dplyr::mutate(species = "CT") %>%
+  dplyr::select(chrom, pos, strain, divergent, species) %>%
+  dplyr::distinct(chrom, pos, strain, divergent, species)
+print(nrow(ct_hdr)) # 2082153
+
+
+ce_hdr <- C_e %>%
+  dplyr::mutate(species = "CE") %>%
+  dplyr::select(chrom, pos, strain, divergent, species) %>%
+  dplyr::distinct(chrom, pos, strain, divergent, species)
+print(nrow(ce_hdr)) # 3718992
+
+csq_hdr <- ct_hdr %>%
+  dplyr::bind_rows(ce_hdr) %>%
+  tidyr::separate_rows(strain, sep = "\\s+") 
+
+
+plotting <- csq_hdr %>%
+  dplyr::group_by(strain, divergent, species) %>%
+  dplyr::summarise(count = n())
+
+
+hdr_prop <- plotting %>%
+  dplyr::group_by(strain,species) %>%
+  dplyr::mutate(total = sum(count)) %>%
+  dplyr::ungroup() %>%
+  dplyr::mutate(proportion = count / total) 
+
+strain_order <- hdr_prop %>%
+  dplyr::filter(divergent == "YES") %>%
+  dplyr::arrange(desc(proportion)) %>%
+  dplyr::pull(strain)
+
+hdr_prop_ordered <- hdr_prop %>%
+  dplyr::mutate(strain = factor(strain, levels = strain_order))
+
+average <- hdr_prop_ordered %>%
+  dplyr::filter(divergent == "YES") %>%
+  dplyr::group_by(species) %>%
+  dplyr::mutate(average = mean(proportion))
+
+hdr_prop_final <- hdr_prop_ordered %>%
+  dplyr::left_join(average, by = "strain") %>%
+  dplyr::select(strain, divergent.x, species.x, proportion.x, average) %>%
+  dplyr::rename(divergent = divergent.x, species = species.x, proportion = proportion.x)
+
+HDR_proportion <- ggplot(hdr_prop_final) +
+  geom_bar(aes(x = strain, y = proportion* 100, fill = divergent), stat = "identity", position = "stack") +
+  geom_hline(data = distinct(hdr_prop_final, species, average),
+             aes(yintercept = average * 100),
+             color = 'snow', size = 1.5, linetype = 'dashed') +
+  geom_text(data = distinct(hdr_prop_final, species, average),
+    aes(x = -Inf, y = average * 100 + 2, label = round(average * 100, 1)),
+    color = 'snow', fontface = "bold", size = 3, hjust = -0.1) +
+  facet_wrap(~ species, scales = "free_x") +
+  scale_fill_manual(values = c("NO" = "blue", "YES" = "red")) +
+  scale_y_continuous(expand = c(0,0), labels = scales::percent_format(scale = 1)) +
+  coord_cartesian(ylim = c(0, 100)) +
+  labs(
+    y = "Proportion of variants",
+    x = "Strain",
+    fill = "In a HDR?"
+  ) +
+  theme(
+    axis.text.x = element_blank(),
+    axis.title = element_text(size = 16, face = 'bold', color = 'black'),
+    axis.text.y = element_text(size = 14, color= 'black'),
+    panel.background = element_blank(),
+    plot.margin = margin(t = 20, r = 20, b = 20, l = 20, unit = "pt"),
+    panel.border = element_rect(fill = NA),
+    strip.text = element_text(size = 16, color = "black", face = 'bold'),
+    axis.ticks.x = element_blank()
+    )
+
+HDR_proportion
+
+ggsave("/vast/eande106/projects/Lance/THESIS_WORK/variant_annotation/plots/hdr_variant_proportion.png", HDR_proportion, width = 12, height = 8, dpi = 600)
+
+
+filtering <- hdr_prop_ordered %>%
+  dplyr::filter(strain == "AB1")
+
+
+
+
+strain_divergent_status <- plotting %>%
+  group_by(strain) %>%
+  summarise(has_NO = any(divergent == "NO"),
+            has_YES = any(divergent == "YES"))
+
+strains_with_NO_only <- strain_divergent_status %>%
+  filter(has_NO, !has_YES)
+
+print(strains_with_NO_only)

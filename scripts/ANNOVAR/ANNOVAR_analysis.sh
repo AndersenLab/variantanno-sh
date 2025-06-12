@@ -5,19 +5,19 @@ if [[ $1 == "c_elegans" ]]; then
     gff="/vast_data/genomes/PRJNA13758/WS283/csq/c_elegans.PRJNA13758.WS283.csq.gff3"
     database_dir="/ANNOVAR_input/db_build_2"
     ref_genome="/vast_data/genomes/PRJNA13758/WS283/c_elegans.PRJNA13758.WS283.genome.fa"
-    vcf="/vcf_dir/WI.20231213.hard-filter.isotype.biallelic.NoMt.HDR.vcf.gz"
+    vcf="/vcf_dir/WI.20250331.hard-filter.isotype.biallelic.NoMt.HDR.vcf.gz"
     build_ver="PRJNA13758.WS283"
 elif [[ $1 == "c_tropicalis" ]]; then
-    gff="/vast_data/genomes/NIC58_nanopore/June2021/csq/c_tropicalis.NIC58_nanopore.June2021.csq.gff3"
+    gff="/vast_data/genomes/NIC58_nanopore/June2021/csq/NIC58.update.April2025.noWBGeneID.csq.gff3"
     database_dir="/ANNOVAR_input/db_build"
     ref_genome="/vast_data/genomes/NIC58_nanopore/June2021/c_tropicalis.NIC58_nanopore.June2021.genome.fa"
-    vcf="/vcf_dir/"
+    vcf="/vcf_dir/WI.20250331.hard-filter.isotype.biallelic.NoMt.HDR.vcf.gz"
     build_ver="NIC58_nanopore.June2021"
 elif [[ $1 == "c_briggsae" ]]; then
-    gff="/vast_data/genomes/QX1410_nanopore/Feb2020/csq/c_briggsae.QX1410_nanopore.Feb2020.csq.gff3" 
+    gff="/vast_data/genomes/QX1410_nanopore/Feb2020/csq/QX1410.update.April2025.noWBGeneID.csq.gff3" 
     database_dir="/ANNOVAR_input/db_build"
     ref_genome="/vast_data/genomes/QX1410_nanopore/Feb2020/c_briggsae.QX1410_nanopore.Feb2020.genome.fa"
-    vcf="/vcf_dir/"
+    vcf="/vcf_dir/WI.20250331.hard-filter.isotype.biallelic.NoMt.vcf.gz"
     build_ver="QX1410_nanopore.Feb2020"
 fi 
 
@@ -76,7 +76,7 @@ if [ -f $database_dir/$database ] && [ -f $gff ]; then
     if ! perl /scripts/table_annovar.pl \
         $vcf $database_dir \
         --buildver $build_ver \
-        --outfile "${1}.ANNOVAR.biallelic.HDR.NoMt" \
+        --outfile "${1}.biallelic.NoMt.HDR.ANNOVAR" \
         --protocol refGene \
         --remove \
         --operation g \

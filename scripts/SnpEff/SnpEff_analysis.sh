@@ -1,15 +1,15 @@
 #!/bin/bash
 
 if [[ $1 == "c_elegans" ]]; then
-    vcf="/vcf_dir/WI.20231213.hard-filter.isotype.onlyMt.HDR.vcf.gz"
+    vcf="/vcf_dir/WI.20250331.hard-filter.isotype.biallelic.onlyMt.vcf.gz"
     config="/snpeff_input/snpEff.config"
     database_name="c_elegans.PRJNA13758.WS283"
 elif [[ $1 == "c_tropicalis" ]]; then
-    vcf="/vcf_dir/"
+    vcf="/vcf_dir/WI.20250331.hard-filter.isotype.biallelic.onlyMt.vcf.gz"
     config="/snpeff_input/snpEff.config"
     database_name="c_tropicalis.NIC58_nanopore.June2021"
 elif [[ $1 == "c_briggsae" ]]; then
-    vcf="/vcf_dir/"
+    vcf="/vcf_dir/WI.20250331.hard-filter.isotype.biallelic.onlyMt.vcf.gz"
     config="/snpeff_input/snpEff.config"
     database_name="c_briggsae.QX1410_nanopore.Feb2020"
 else
@@ -20,7 +20,6 @@ fi
 mkdir -p /annotation_output/containerRun
 
 output_file="/annotation_output/containerRun/$(basename ${vcf} .vcf.gz).snpeff.vcf.gz"
-
 
 # Build the database
 cd /snpeff_input #change to the data directory specified 
@@ -58,13 +57,5 @@ if ! bcftools view -O v $vcf | \
     exit 1
 fi
 
-# add flags   -no-downstream \
-#       -no-intergenic \
-#       -no-upstream \ 
-# ??? Ryan had these
-
  #params.snpeff_dir = /vast/eande106/data/c_elegans/genomes/PRJNA13758/WS283/snpeff
  #params.snpeff_reference = "${params.species}.${params.project}.${params.ws_build}"
-    
- # Where we pass the species as the argument
- # $ sbatch SnpEff_analysis.sh c_elegans

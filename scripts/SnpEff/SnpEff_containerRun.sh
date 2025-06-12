@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH -J snpEff_Ctrop                 # Job name
+#SBATCH -J snpEff                 # Job name
 #SBATCH -A eande106                     # Allocation name
 #SBATCH -p parallel                     # Partition/Queue name
 #SBATCH -t 8:00:00                      # Job walltime/duration (hh:mm:ss)
@@ -8,8 +8,8 @@
 #SBATCH -n 8                            # Number of cores
 #SBATCH --mail-user=loconn13@jh.edu     # Email for job notifications
 #SBATCH --mail-type=END                 # Notify when job ends
-#SBATCH --output=/home/loconn13/vast-eande106/projects/Lance/THESIS_WORK/variant_annotation/processed_data/SnpEff/c_elegans/output_SLURM/SnpEff_container_final.oe  
-#SBATCH --error=/home/loconn13/vast-eande106/projects/Lance/THESIS_WORK/variant_annotation/processed_data/SnpEff/c_elegans/output_SLURM/SnpEff_container_final.rr 
+#SBATCH --output=/home/loconn13/vast-eande106/projects/Lance/THESIS_WORK/variant_annotation/processed_data/SnpEff/c_tropicalis/SLURM_output/mitoFix0516.oe  
+#SBATCH --error=/home/loconn13/vast-eande106/projects/Lance/THESIS_WORK/variant_annotation/processed_data/SnpEff/c_tropicalis/SLURM_output/mitoFix0516.rr 
 
 module load singularity  # Load Singularity module
 
@@ -25,8 +25,6 @@ singularity exec --bind $snpeff_input:/snpeff_input \
                  --bind $vcf_dir:/vcf_dir \
                  $containerImage /usr/bin/bash /vast/eande106/projects/Lance/THESIS_WORK/variant_annotation/scripts/SnpEff/c_elegans/SnpEff_analysis.sh $1
   
-
-
 # TO RUN:
 # chmod +x /home/loconn13/vast-eande106/projects/Lance/THESIS_WORK/variant_annotation/scripts/SnpEff/c_elgans/SnpEff_analysis.sh
 # sbatch /home/loconn13/vast-eande106/projects/Lance/THESIS_WORK/variant_annotation/scripts/SnpEff/c_elegans/SnpEff_containerRun.sh c_elegans

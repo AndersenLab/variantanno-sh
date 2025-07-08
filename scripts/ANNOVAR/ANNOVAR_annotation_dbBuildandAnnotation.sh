@@ -27,7 +27,7 @@ singularity exec --bind $ANNOVAR_input:/ANNOVAR_input \
                  --bind $scripts:/scripts \
                  --bind $vast_data:/vast_data \
                  --bind $vcf_dir:/vcf_dir \
-                 $containerImage /usr/bin/bash /vast/eande106/projects/Lance/THESIS_WORK/variant_annotation/scripts/ANNOVAR/c_elegans/ANNOVAR_analysis.sh $1
+                 $containerImage /usr/bin/bash /vast/eande106/projects/Lance/THESIS_WORK/variant_annotation/variantanno-sh/scripts/ANNOVAR/ANNOVAR_analysis.sh $1
   
 
 # TO RUN:

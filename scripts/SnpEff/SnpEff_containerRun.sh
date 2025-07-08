@@ -23,7 +23,7 @@ vcf_dir="/vast/eande106/projects/Lance/THESIS_WORK/variant_annotation/processed_
 singularity exec --bind $snpeff_input:/snpeff_input \
                  --bind $output_dir:/annotation_output \
                  --bind $vcf_dir:/vcf_dir \
-                 $containerImage /usr/bin/bash /vast/eande106/projects/Lance/THESIS_WORK/variant_annotation/scripts/SnpEff/c_elegans/SnpEff_analysis.sh $1
+                 $containerImage /usr/bin/bash /vast/eande106/projects/Lance/THESIS_WORK/variant_annotation/variantanno-sh/scripts/SnpEff/SnpEff_analysis.sh $1
   
 # TO RUN:
 # chmod +x /home/loconn13/vast-eande106/projects/Lance/THESIS_WORK/variant_annotation/scripts/SnpEff/c_elgans/SnpEff_analysis.sh

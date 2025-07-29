@@ -8,8 +8,8 @@
 #SBATCH -c 12                            # Number of cores per task
 #SBATCH --mail-user=loconn13@jh.edu     # Email for job notifications
 #SBATCH --mail-type=END                 # Notify when job ends
-#SBATCH --output=/vast/eande106/projects/Lance/THESIS_WORK/variant_annotation/processed_data/CSQ/c_tropicalis/SLURM_output/0513_tropicalis.oe  
-#SBATCH --error=/vast/eande106/projects/Lance/THESIS_WORK/variant_annotation/processed_data/CSQ/c_tropicalis/SLURM_output/0513_tropicalis.rr 
+#SBATCH --output=/vast/eande106/projects/Lance/THESIS_WORK/variant_annotation/processed_data/CSQ/c_briggsae/SLURM_output/0722_Cb.oe  
+#SBATCH --error=/vast/eande106/projects/Lance/THESIS_WORK/variant_annotation/processed_data/CSQ/c_briggsae/SLURM_output/0722_Cb.rr 
 
 module load singularity  # Load Singularity module
 
@@ -28,8 +28,8 @@ elif [[ $1 == "c_tropicalis" ]]; then
     gff="/vast/eande106/data/c_tropicalis/genomes/NIC58_nanopore/June2021/csq/NIC58.update.April2025.noWBGeneID.csq.gff3"    
     ref_genome="/vast_data/genomes/NIC58_nanopore/June2021/c_tropicalis.NIC58_nanopore.June2021.genome.fa"
 elif [[ $1 == "c_briggsae" ]]; then
-    vcf="$vcf_dir/WI.20250331.hard-filter.isotype.biallelic.NoMt.vcf.gz"
-    gff="/vast/eande106/data/c_briggsae/genomes/QX1410_nanopore/Feb2020/csq/QX1410.update.April2025.noWBGeneID.csq.gff3"
+    vcf="$vcf_dir/WI.20250626.hard-filter.isotype.biallelic.NoMt.HDR.vcf.gz"
+    gff="/vast/eande106/data/c_briggsae/genomes/QX1410_nanopore/Feb2020/csq/QX1410.update.June2025.noWBGeneID.csq.gff3"
     ref_genome="/vast_data/genomes/QX1410_nanopore/Feb2020/c_briggsae.QX1410_nanopore.Feb2020.genome.fa"
 else
     echo "Unsupported organism: $1"

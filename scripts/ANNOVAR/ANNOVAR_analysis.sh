@@ -14,10 +14,10 @@ elif [[ $1 == "c_tropicalis" ]]; then
     vcf="/vcf_dir/WI.20250331.hard-filter.isotype.biallelic.NoMt.HDR.vcf.gz"
     build_ver="NIC58_nanopore.June2021"
 elif [[ $1 == "c_briggsae" ]]; then
-    gff="/vast_data/genomes/QX1410_nanopore/Feb2020/csq/QX1410.update.April2025.noWBGeneID.csq.gff3" 
+    gff="/vast_data/genomes/QX1410_nanopore/Feb2020/csq/QX1410.update.June2025.noWBGeneID.csq.gff3" 
     database_dir="/ANNOVAR_input/db_build"
     ref_genome="/vast_data/genomes/QX1410_nanopore/Feb2020/c_briggsae.QX1410_nanopore.Feb2020.genome.fa"
-    vcf="/vcf_dir/WI.20250331.hard-filter.isotype.biallelic.NoMt.vcf.gz"
+    vcf="/vcf_dir/WI.20250626.hard-filter.isotype.biallelic.NoMt.HDR.vcf.gz"
     build_ver="QX1410_nanopore.Feb2020"
 fi 
 

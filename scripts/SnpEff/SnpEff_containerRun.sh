@@ -8,8 +8,8 @@
 #SBATCH -n 8                            # Number of cores
 #SBATCH --mail-user=loconn13@jh.edu     # Email for job notifications
 #SBATCH --mail-type=END                 # Notify when job ends
-#SBATCH --output=/home/loconn13/vast-eande106/projects/Lance/THESIS_WORK/variant_annotation/processed_data/SnpEff/c_tropicalis/SLURM_output/mitoFix0516.oe  
-#SBATCH --error=/home/loconn13/vast-eande106/projects/Lance/THESIS_WORK/variant_annotation/processed_data/SnpEff/c_tropicalis/SLURM_output/mitoFix0516.rr 
+#SBATCH --output=/home/loconn13/vast-eande106/projects/Lance/THESIS_WORK/variant_annotation/processed_data/SnpEff/c_briggsae/SLURM_output/0722_Cb.oe  
+#SBATCH --error=/home/loconn13/vast-eande106/projects/Lance/THESIS_WORK/variant_annotation/processed_data/SnpEff/c_briggsae/SLURM_output/0722_Cb.rr 
 
 module load singularity  # Load Singularity module
 

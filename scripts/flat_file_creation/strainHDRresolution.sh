@@ -8,29 +8,24 @@
 #SBATCH -c 24                           # Number of cores
 #SBATCH --mail-user=loconn13@jh.edu     # Email for job notifications
 #SBATCH --mail-type=END                 # Notify when job ends
-#SBATCH --output=/vast/eande106/projects/Lance/THESIS_WORK/variant_annotation/processed_data/flat_file_creation/c_tropicalis/SLURM_output/0513_ctrop.oe  # Output log file
-#SBATCH --error=/vast/eande106/projects/Lance/THESIS_WORK/variant_annotation/processed_data/flat_file_creation/c_tropicalis/SLURM_output/0513_ctrop.rr 
+#SBATCH --output=/vast/eande106/projects/Lance/THESIS_WORK/variant_annotation/processed_data/flat_file_creation/c_briggsae/SLURM_output/0721_briggsae.oe  # Output log file
+#SBATCH --error=/vast/eande106/projects/Lance/THESIS_WORK/variant_annotation/processed_data/flat_file_creation/c_briggsae/SLURM_output/0721_briggsae.rr 
 
 if [[ $1 == "c_elegans" ]]; then
-    strain_hdr_bed="/vast/eande106/data/c_elegans/WI/divergent_regions/20250331/HDR_allStrain_5kbclust_1IBfilt_20250430.bed.gz"
-    vcf="/vast/eande106/projects/Lance/THESIS_WORK/variant_annotation/processed_data/flat_file_creation/c_elegans/WI.20250331.hard-filter.isotype.biallelic.NoMt.vcf.gz"
-    vcf_unfilt="/vast/eande106/data/c_elegans/WI/variation/20250331/vcf/WI.20250331.hard-filter.isotype.vcf.gz"
+    strain_hdr_bed="/vast/eande106/data/c_elegans/WI/divergent_regions/20250625/20250625_c_elegans_divergent_regions_strain.bed.gz"
+    vcf="/vast/eande106/projects/Lance/THESIS_WORK/variant_annotation/processed_data/flat_file_creation/c_elegans/WI.20250625.hard-filter.isotype.biallelic.NoMt.vcf.gz"
+    vcf_unfilt="/vast/eande106/data/c_elegans/WI/variation/20250625/vcf/WI.20250625.hard-filter.isotype.vcf.gz"
     output_dir="/vast/eande106/projects/Lance/THESIS_WORK/variant_annotation/processed_data/flat_file_creation/c_elegans"
 elif [[ $1 == "c_tropicalis" ]]; then
-    strain_hdr_bed="/vast/eande106/data/c_tropicalis/WI/divergent_regions/20250331/HDR_allStrain_5kbclust_1IBfilt_20250511.bed.gz"
-    vcf="/vast/eande106/projects/Lance/THESIS_WORK/variant_annotation/processed_data/flat_file_creation/c_tropicalis/WI.20250331.hard-filter.isotype.biallelic.NoMt.vcf.gz"
-    vcf_unfilt="/vast/eande106/data/c_tropicalis/WI/variation/20250331/vcf/WI.20250331.hard-filter.isotype.vcf.gz"
+    strain_hdr_bed="/vast/eande106/data/c_tropicalis/WI/divergent_regions/20250627/20250627_c_tropicalis_divergent_regions_strain.bed.gz"
+    vcf="/vast/eande106/projects/Lance/THESIS_WORK/variant_annotation/processed_data/flat_file_creation/c_tropicalis/WI.20250627.hard-filter.isotype.biallelic.NoMt.vcf.gz"
+    vcf_unfilt="/vast/eande106/data/c_tropicalis/WI/variation/20250627/vcf/WI.20250627.hard-filter.isotype.vcf.gz"
     output_dir="/vast/eande106/projects/Lance/THESIS_WORK/variant_annotation/processed_data/flat_file_creation/c_tropicalis"
 elif [[ $1 == "c_briggsae" ]]; then
-    # strain_hdr_bed=""
-    vcf="/vast/eande106/projects/Lance/THESIS_WORK/variant_annotation/processed_data/flat_file_creation/c_briggsae/WI.20250331.hard-filter.isotype.biallelic.NoMt.vcf.gz"
-    vcf_unfilt="/vast/eande106/data/c_briggsae/WI/variation/20250331/vcf/WI.20250331.hard-filter.isotype.vcf.gz"
+    strain_hdr_bed="/vast/eande106/data/c_briggsae/WI/divergent_regions/20250626/20250626_c_briggsae_divergent_regions_strain.bed.gz"
+    vcf="/vast/eande106/projects/Lance/THESIS_WORK/variant_annotation/processed_data/flat_file_creation/c_briggsae/WI.20250626.hard-filter.isotype.biallelic.NoMt.vcf.gz"
+    vcf_unfilt="/vast/eande106/data/c_briggsae/WI/variation/20250626/vcf/WI.20250626.hard-filter.isotype.vcf.gz"
     output_dir="/vast/eande106/projects/Lance/THESIS_WORK/variant_annotation/processed_data/flat_file_creation/c_briggsae"
-
-    if [[ ! -f $vcf ]]; then
-        bcftools view -m2 -M2 -e 'CHROM=="MtDNA"' -O z -o $vcf $vcf_unfilt
-        bcftools view -m2 -M2 -i 'CHROM=="MtDNA"' -O z -o $output_dir/$(basename $vcf_unfilt .vcf.gz).biallelic.onlyMt.vcf.gz $vcf_unfilt 
-    fi
 else
     echo "Unsupported organism: $1"
     exit 1

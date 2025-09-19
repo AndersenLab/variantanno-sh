@@ -962,7 +962,7 @@ else
 fi
 
 # Create an associative array of processed keys for quick lookup
-declare -A processed
+declare -A processe
 
 # Populate the processed set from existing output
 tail -n +2 $output_dir/VEP_${1}_WBGeneID_GRANTHAM_BLOSUM_PP_final.csv | awk -F',' '{print $2"_"$9}' | while read key; do 
@@ -1132,7 +1132,7 @@ done < $output_dir/VEP_${1}_WBGeneID_GRANTHAM_BLOSUM_test.tsv
 
 # # SnpEff 
 # if [[ ! -f $output_dir/SnpEff_${1}_WBGeneID_GRANTHAM_PP_final.csv ]]; then
-#     echo "chrom,pos,ref,alt,consequence,impact,AA,strain,transcript_name,wbgene,locus,grantham_score,percent_protein" > $output_dir/SnpEff_${1}_WBGeneID_GRANTHAM_PP_final.csv
+#     echo "chrom,pos,ref,alt,consequence,impact,AA,strain,transcript_name,wbgene,gene_name,grantham_score,percent_protein" > $output_dir/SnpEff_${1}_WBGeneID_GRANTHAM_PP_final.csv
 #     echo "Wrote header to final final for SnpEff"
 # else 
 #     echo "Final SnpEff file for PP calculation is already created."

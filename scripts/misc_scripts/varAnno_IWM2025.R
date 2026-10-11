@@ -637,7 +637,7 @@ csq_heatmap_class <- csq_heatmap %>%
     str_detect(consequence, "missense")    ~ "missense",
     str_detect(consequence, "frameshift")  ~ "frameshift",
     str_detect(consequence, "stop_gained") ~ "nonsense",
-    TRUE                                   ~ "other"  # fallback
+    TRUE                                   ~ "other"  
   )) %>%
   dplyr::select(-consequence, -chrom, -pos) %>%
   dplyr::group_by(strain,species,classification) %>%
@@ -649,7 +649,7 @@ csq_heatmap_class <- csq_heatmap %>%
       species == "CT" ~ consequence_count / csq_t,
       TRUE            ~ NA_real_
     )
-  ) # normalize by total number of variants annotated by BCSQ for each species 
+  ) # normalize by total number of deleterious variants annotated by BCSQ for each species 
 
 
 top_strains_per_species <- csq_heatmap_class %>%
@@ -1190,7 +1190,7 @@ HDR_proportion <- ggplot(hdr_prop_final) +
 
 HDR_proportion
 
-ggsave("/vast/eande106/projects/Lance/THESIS_WORK/variant_annotation/plots/hdr_variant_proportion.png", HDR_proportion, width = 12, height = 8, dpi = 600)
+# ggsave("/vast/eande106/projects/Lance/THESIS_WORK/variant_annotation/plots/hdr_variant_proportion.png", HDR_proportion, width = 12, height = 8, dpi = 600)
 
 
 filtering <- hdr_prop_ordered %>%
